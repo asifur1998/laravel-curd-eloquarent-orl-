@@ -1,0 +1,61 @@
+
+
+
+
+insert 
+public function post_area(Request $request)
+    {
+        $area = new Area();
+        $area->area_name = $request->add_area;
+        $area->save();
+        return redirect()->back()->with('message','Area has been Created!');
+    }
+------------------------------------------------------------------------------------------------------------------------------------------
+read 
+ public function show_area()
+    {
+         $area = Area::all();
+        return view ('admin.show_area',compact('area'));
+        
+    }
+------------------------------------------------------------------------------------------------------------------------------------------
+delete
+ public function delete_area($id)
+    {
+        $area = Area::find($id);
+        $area->delete();
+
+        return redirect()->back()->with('message','Area has been Deleted!');
+    }
+
+ancore url : {{url('delete_area',$area->id)}}    <a href=""> Delete </a>
+route : /delete_area/{id}'   web.php 
+------------------------------------------------------------------------------------------------------------------------------------------
+update 
+ public function update_area($id)
+    {
+        $area = Area::find($id);
+        $area->update();
+        return view ('admin.update_area',compact('area'));
+    }
+
+     public function update_area_confirm(Request $request,$id)
+    {
+        $area = Area::find($id);
+        $area->area_name = $request->add_area;
+        $area->save();
+        return redirect()->back()->with('message','Area has been Updated!');
+    }
+
+ancore url : {{url('update_area',$area->id)}}    <a href=""> edit </a>
+
+route: '/update_area_confirm/{id}'   web.php 
+------------------------------------------------------------------------------------------------------------------------------------------
+Md.Asifur Rahman  laravel framework (eloquarent orm )
+
+
+
+
+
+
+
